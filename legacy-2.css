@@ -1,0 +1,21 @@
+/* Wedding Legacy 2.0: progressive, non-destructive visual layer */
+:root{--wine:#381821;--plum:#24131c;--gold:#c6a36a;--champagne:#e8d2a4;--ivory:#f5ebdd;--emerald:#45614d}
+body{background:var(--ivory)}
+header{background:radial-gradient(ellipse at 50% 85%,#83504777,transparent 55%),linear-gradient(155deg,#24131c,#381821 65%,#1a0b12)}
+header .palace-arches{opacity:.45}
+header:before{border-color:#c6a36a99}
+header .crest{color:var(--champagne)}
+header .btn{background:var(--champagne)}
+section .eyebrow{color:#ad884d}
+.dark .eyebrow{color:var(--champagne)}
+#story .card{min-height:220px}
+.legacy-controls{position:fixed;bottom:16px;right:16px;z-index:20;display:flex;gap:8px;align-items:center}
+.legacy-controls button{background:var(--plum);color:var(--ivory);border:1px solid var(--gold);padding:12px 15px;margin:0;box-shadow:0 4px 18px #0004;font-size:11px}
+.legacy-journey{max-width:900px;margin:26px auto 0;display:flex;justify-content:center;flex-wrap:wrap;gap:9px}
+.legacy-journey a{font:600 11px/1.4 'DM Sans',sans-serif;text-decoration:none;letter-spacing:.06em;color:var(--champagne);border:1px solid #c6a36a88;padding:11px 14px}
+.legacy-journey a:hover{background:#ffffff16}
+.legacy-welcome{margin:28px auto 0;max-width:700px;color:#f5ebdd;font-size:clamp(1.1rem,2.8vw,1.5rem)}
+.legacy-filigree{width:180px;height:32px;margin:0 auto;background:linear-gradient(90deg,transparent,#c6a36a,transparent);mask:linear-gradient(0deg,transparent 46%,black 48% 52%,transparent 54%)}
+.legacy-staging{font:12px 'DM Sans',sans-serif;letter-spacing:.08em;background:#e8d2a4;color:#381821;text-align:center;padding:10px}
+@media(max-width:640px){.legacy-controls{right:10px;bottom:10px}.legacy-controls button{font-size:10px;padding:10px}.legacy-journey{gap:7px}.legacy-journey a{padding:9px 10px;font-size:10px}header .hero-inner{padding-bottom:30px}}
+@media print{nav,.legacy-controls,.scroll-cue,form{display:none!important}section{break-inside:avoid}}
