@@ -1,0 +1,52 @@
+/* Wedding Legacy 2.0: progressive, non-destructive visual layer */
+:root{--wine:#381821;--plum:#24131c;--gold:#c6a36a;--champagne:#e8d2a4;--ivory:#f5ebdd;--emerald:#45614d}
+body{background:var(--ivory)}
+header{background:radial-gradient(ellipse at 50% 85%,#83504777,transparent 55%),linear-gradient(155deg,#24131c,#381821 65%,#1a0b12)}
+header .palace-arches{opacity:.45}
+header:before{border-color:#c6a36a99}
+header .crest{color:var(--champagne)}
+header .btn{background:var(--champagne)}
+section .eyebrow{color:#ad884d}
+.dark .eyebrow{color:var(--champagne)}
+#story .card{min-height:220px}
+.legacy-controls{position:fixed;bottom:16px;right:16px;z-index:20;display:flex;gap:8px;align-items:center}
+.legacy-controls button{background:var(--plum);color:var(--ivory);border:1px solid var(--gold);padding:12px 15px;margin:0;box-shadow:0 4px 18px #0004;font-size:11px}
+.legacy-journey{max-width:900px;margin:26px auto 0;display:flex;justify-content:center;flex-wrap:wrap;gap:9px}
+.legacy-journey a{font:600 11px/1.4 'DM Sans',sans-serif;text-decoration:none;letter-spacing:.06em;color:var(--champagne);border:1px solid #c6a36a88;padding:11px 14px}
+.legacy-journey a:hover{background:#ffffff16}
+.legacy-welcome{margin:28px auto 0;max-width:700px;color:#f5ebdd;font-size:clamp(1.1rem,2.8vw,1.5rem)}
+.legacy-filigree{width:180px;height:32px;margin:0 auto;background:linear-gradient(90deg,transparent,#c6a36a,transparent);mask:linear-gradient(0deg,transparent 46%,black 48% 52%,transparent 54%)}
+.legacy-staging{font:12px 'DM Sans',sans-serif;letter-spacing:.08em;background:#e8d2a4;color:#381821;text-align:center;padding:10px}
+@media(max-width:640px){.legacy-controls{right:10px;bottom:10px}.legacy-controls button{font-size:10px;padding:10px}.legacy-journey{gap:7px}.legacy-journey a{padding:9px 10px;font-size:10px}header .hero-inner{padding-bottom:30px}}
+@media print{nav,.legacy-controls,.scroll-cue,form{display:none!important}section{break-inside:avoid}}
+
+/* Palace edition: layered architectural depth, delicate ornament and editorial spacing */
+:root{--wine:#2b111d;--plum:#170b13;--gold:#caa96d;--champagne:#f0d7a5;--ivory:#faf2e5}
+body{background:#f8efe1}
+header{background:radial-gradient(ellipse at 50% 95%,#bd8b573d,transparent 46%),radial-gradient(ellipse at 50% 15%,#783b4e66,transparent 62%),linear-gradient(155deg,#140a10,#3b1929 58%,#1a0c14)}
+header .palace-arches{opacity:.68;background:radial-gradient(ellipse at 50% 76%,#c29a6640,transparent 46%),repeating-linear-gradient(90deg,transparent 0 16%,#e2bc7426 16.1% 16.3%,transparent 16.5% 33.3%)}
+header .palace-arches:after{inset:12% 15% -6%;border:clamp(16px,3vw,34px) double #d9b77875;border-radius:48% 48% 0 0/33% 33% 0 0}
+header .crest{font-size:clamp(6rem,18vw,14rem);line-height:1.05;text-shadow:0 8px 40px #0008,0 0 90px #cba26955}
+header h1{font-weight:400;letter-spacing:-.055em}
+header .eyebrow{color:#f0d6a4}
+header .btn{margin-top:24px;padding:16px 34px;border:1px solid #f5dfb7;background:linear-gradient(120deg,#e8c990,#b98b4c);box-shadow:0 9px 40px #0004}
+header .btn:hover{box-shadow:0 14px 50px #0006}
+section:not(.dark):before{content:'✦';display:block;color:#ba975f;font-size:22px;letter-spacing:.3em;margin-bottom:22px}
+section h2{max-width:880px;margin:15px auto 28px}
+section .wrap>p{max-width:760px;margin-left:auto;margin-right:auto}
+#story .grid{counter-reset:chamber}
+#story .card{position:relative;overflow:hidden;border-color:#d7b77980;background:linear-gradient(145deg,#ffffff12,#ffffff05)}
+#story .card:before{counter-increment:chamber;content:'0' counter(chamber);display:block;font:12px 'DM Sans',sans-serif;letter-spacing:.2em;color:#d8b983;margin-bottom:22px}
+#letter .panel{position:relative;padding-top:70px;padding-bottom:70px;background:radial-gradient(ellipse at 50% 0%,#f6e8d3,#fffdf8 70%)}
+#letter .panel:before{content:'❦';display:block;color:#b08b53;font-size:38px;line-height:1.1;margin-bottom:15px}
+#blessings svg{max-width:520px;filter:drop-shadow(0 18px 28px #0002)}
+#blessings form,#capsule form{padding:clamp(22px,5vw,46px);background:#fffaf2;color:#40232a;border:1px solid #d6b77c;box-shadow:0 20px 70px #10070e22}
+#blessings form label,#capsule form label{color:#40232a}
+#blessings form button,#capsule form button{width:100%;min-height:52px}
+#gallery .card{min-height:155px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(1.4rem,3vw,2rem)}
+#heritage .card{min-height:200px;text-align:center}
+#heritage .card h3{font-size:2.2rem}
+.legacy-staging{position:relative;z-index:21;background:#f0d7a5;color:#3b1827}
+@media(min-width:900px){#story .grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){header .palace-arches:after{inset:20% 4% -5%;border-width:14px}header .crest{font-size:clamp(6rem,29vw,10rem)}#letter .panel{padding-top:55px;padding-bottom:55px}.legacy-controls{bottom:10px}.legacy-controls button{box-shadow:0 4px 16px #0005}}
+@media(prefers-reduced-motion:reduce){header .btn{transition:none}}
