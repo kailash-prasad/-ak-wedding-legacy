@@ -8,7 +8,8 @@ const json=(value:unknown,status=200,origin='')=>new Response(JSON.stringify(val
 Deno.serve(async request=>{
  const origin=request.headers.get('origin')||'';
  const allowed=Deno.env.get('ALLOWED_ORIGIN')||'';
- if(!allowed||origin!==allowed)return json({error:'Origin not allowed'},403);
+ const allowedOrigins=new Set([allowed,'https://lustrous-pastelito-d75323.netlify.app']);
+ if(!origin||!allowedOrigins.has(origin))return json({error:'Origin not allowed'},403);
  if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{'access-control-allow-origin':origin,'access-control-allow-methods':'POST,OPTIONS','access-control-allow-headers':'content-type','vary':'Origin'}});
  if(request.method!=='POST')return json({error:'Method not allowed'},405,origin);
  if(Number(request.headers.get('content-length')||0)>12000)return json({error:'Payload too large'},413,origin);
