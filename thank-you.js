@@ -1,0 +1,1 @@
+'use strict';(()=>{const nodes=document.querySelectorAll('.reveal');if(!('IntersectionObserver'in window)){nodes.forEach(n=>n.classList.add('visible'));return}const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.12});nodes.forEach(n=>io.observe(n))})();
