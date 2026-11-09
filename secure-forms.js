@@ -16,7 +16,8 @@
    const holder=document.createElement('div');holder.className='turnstile-holder';holder.setAttribute('aria-label','Spam protection verification');
    const slot=document.getElementById('verificationSlot');if(slot)slot.append(holder);else submit.before(holder);
    let widget;
-   try{widget=window.turnstile.render(holder,{sitekey:cfg.turnstileSiteKey,size:'flexible',theme:'light',
+   status.textContent='Complete verification below to send your note.';
+   try{widget=window.turnstile.render(holder,{sitekey:cfg.turnstileSiteKey,size:form.clientWidth<300?'compact':'flexible',theme:'light',
     callback:()=>{submit.disabled=false;status.textContent=''},
     'expired-callback':()=>{submit.disabled=true;status.textContent='Verification expired. Please verify again.'},
     'error-callback':()=>{submit.disabled=true;status.textContent='Verification could not load. Please reload to try again. Your message has not been saved.'}

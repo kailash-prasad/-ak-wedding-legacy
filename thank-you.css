@@ -11,3 +11,6 @@
 @media(max-width:760px){.palace-portal{height:53svh}.entrance-heading{top:9%}.portal-crown{height:40px}}
 .courtyard{height:390px;bottom:0}.courtyard img{height:100%;max-height:none;object-fit:cover;object-position:bottom}.hero-copy{padding-top:60px}
 @media(max-width:760px){.courtyard{height:320px}.hero-copy{padding-top:66px}}
+.envelope-flap{transition:transform 1.1s var(--ease),opacity .5s .6s}.envelope.open .envelope-flap{opacity:0;pointer-events:none}
+.motion-paused *,.motion-paused *:before,.motion-paused *:after{animation:none!important;transition:none!important}.motion-paused .signature-line{stroke-dashoffset:0}.motion-paused .petals,.motion-paused .lanterns{display:none}
+.writing-desk,.guestbook-intro{min-width:0}.turnstile-holder{width:100%}
