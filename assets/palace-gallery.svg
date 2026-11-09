@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="jaali" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M22 0 44 22 22 44 0 22ZM0 0l44 44M44 0 0 44" fill="none" stroke="#c89463" stroke-width=".6" opacity=".62"/>
+      <path d="m22 16 6 6-6 6-6-6z" fill="none" stroke="#d9aa75" stroke-width=".8"/>
+    </pattern>
+    <linearGradient id="foil" x1="0" x2="1">
+      <stop stop-color="#9d633d"/><stop offset=".48" stop-color="#eac485"/><stop offset="1" stop-color="#9d633d"/>
+    </linearGradient>
+    <g id="column" fill="none" stroke="url(#foil)">
+      <path d="M-29 0h58v12h-58zM-22 18h44v18h-44zM-17 36h34v611h-34zM-22 647h44v22h-44zM-29 675h58v14h-58z"/>
+      <path d="M-9 36v611M0 36v611M9 36v611" opacity=".6"/>
+      <path d="M-33 0 0-13 33 0M-29 689l-9 11h76l-9-11" opacity=".8"/>
+    </g>
+    <g id="alcove">
+      <path d="M0 700V256Q0 183 40 153Q65 137 65 104Q96 117 120 73Q144 117 175 104Q175 137 200 153Q240 183 240 256v444Z" fill="url(#jaali)" opacity=".42"/>
+      <path d="M0 700V256Q0 183 40 153Q65 137 65 104Q96 117 120 73Q144 117 175 104Q175 137 200 153Q240 183 240 256v444Z" fill="none" stroke="url(#foil)" stroke-width="2"/>
+      <path d="M13 685V256Q13 191 49 164Q70 150 76 124Q100 127 120 99Q140 127 164 124Q170 150 191 164Q227 191 227 256v429Z" fill="none" stroke="url(#foil)" opacity=".68"/>
+    </g>
+    <g id="lotus" fill="none" stroke="url(#foil)" stroke-width="1.25">
+      <path d="M0 44C-20 31-20 15 0 0 20 15 20 31 0 44Z M0 44C-18 44-34 34-33 15-13 18-8 25 0 44Z M0 44C18 44 34 34 33 15 13 18 8 25 0 44Z M0 44C-24 53-38 43-45 34c17-4 29 0 45 10Zm0 0c24 9 38-1 45-10-17-4-29 0-45 10ZM-31 56Q0 66 31 56"/>
+    </g>
+  </defs>
+  <g opacity=".72">
+    <use href="#alcove" x="-128"/><use href="#alcove" x="1328"/>
+    <use href="#column" x="112" y="42"/><use href="#column" x="1328" y="42"/>
+    <path d="M0 45h1440M0 50h1440M0 715h1440M0 728h1440" stroke="url(#foil)" opacity=".5"/>
+  </g>
+  <g fill="none" stroke="url(#foil)" opacity=".36">
+    <path d="M177 714V310Q177 188 287 154Q341 137 346 102Q413 111 455 68Q518 82 580 40Q645 55 720 9Q795 55 860 40Q922 82 985 68Q1027 111 1094 102Q1099 137 1153 154Q1263 188 1263 310v404" stroke-width="1.45"/>
+    <path d="M192 714V310Q192 202 292 169Q345 152 359 119Q419 123 460 85Q522 99 583 57Q650 73 720 27Q790 73 857 57Q918 99 980 85Q1021 123 1081 119Q1095 152 1148 169Q1248 202 1248 310v404"/>
+  </g>
+  <g opacity=".66">
+    <use href="#lotus" x="34" y="620"/><use href="#lotus" x="1406" y="620"/>
+    <use href="#lotus" x="720" y="680"/>
+  </g>
+</svg>
