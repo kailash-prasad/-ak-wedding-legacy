@@ -5,7 +5,9 @@
  let motionPaused = reduced.matches, galleryPaused = false, galleryVisible = false, introTimer, timer;
  const gate = $('royalGate'), main = $('main'), header = document.querySelector('.site-header');
  const setInert = value => { main.inert = value; header.inert = value; };
+ const introKey = 'ak-legacy-portrait-intro-seen';
  function finishIntro() {
+  try { localStorage.setItem(introKey, '1'); } catch { /* Storage is optional. */ }
   clearTimeout(introTimer); gate.hidden = true; gate.classList.remove('opening','leaving');
   document.body.classList.remove('intro-locked'); setInert(false); main.focus({preventScroll:true});
  }
@@ -21,7 +23,7 @@
  }
  $('openRoyalGate').addEventListener('click',()=>enter());
  $('skipIntro').addEventListener('click',()=>enter(true));
- $('replayIntro').addEventListener('click',showIntro);
+ $('replayIntro').addEventListener('click',()=>{window.scrollTo({top:0,behavior:'instant'});showIntro()});
  gate.addEventListener('keydown',e=>{
   if(e.key==='Escape'){e.preventDefault();enter(true)}
   if(e.key==='Tab'){
@@ -31,8 +33,9 @@
   }
  });
  document.querySelector('.skip-link').addEventListener('click',()=>{if(!gate.hidden)finishIntro()});
- // The introduction is deliberately replayable; no storage access is needed.
- showIntro();
+ let returningGuest = false;
+ try { returningGuest = localStorage.getItem(introKey) === '1'; } catch { /* Storage is optional. */ }
+ if (!returningGuest && !location.hash) showIntro();
  for(let i=0;i<14;i++){const petal=document.createElement('i');petal.style.cssText='--x:'+((i*37)%100)+'%;--duration:'+(15+i%7)+'s;--delay:'+(-i*2.8)+'s';$('petals').append(petal)}
  const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
@@ -63,7 +66,15 @@
  const slides=[...$('memoryTrack').children],tabs=[...$('memoryDots').children];
  function schedule(){clearInterval(timer);if(!motionPaused&&!galleryPaused&&galleryVisible&&!document.hidden&&!$('lightbox').open&&!$('gallery').contains(document.activeElement))timer=setInterval(()=>go(current+1),Math.max(2500,cfg.interval||5500))}
  function go(index,announce=false){
-  current=(index+chapters.length)%chapters.length;
+  const next=(index+chapters.length)%chapters.length;
+  const direction=index===current-1||index<current&&index!==current+1?-1:1;
+  if(next!==current&&!motionPaused){
+   slides[next].animate([
+    {transform:'perspective(1300px) rotateY('+direction*-9+'deg)',filter:'brightness(.77)'},
+    {transform:'none',filter:'brightness(1)'}
+   ],{duration:650,easing:'ease-out'});
+  }
+  current=next;
   $('memoryTrack').style.transform='translateX(-'+current*100+'%)';
   slides.forEach((s,i)=>{s.classList.toggle('active',i===current);s.inert=i!==current;s.setAttribute('aria-hidden',String(i!==current))});
   tabs.forEach((t,i)=>t.setAttribute('aria-current',String(i===current)));
@@ -106,11 +117,15 @@
  }
  $('motionToggle').addEventListener('click',()=>{motionPaused=!motionPaused;applyMotion()});
  reduced.addEventListener('change',()=>{motionPaused=reduced.matches;applyMotion()});
- $('albumLink').href=cfg.albumUrl;$('albumNote').hidden=!cfg.albumIsPlaceholder;
+ if (cfg.albumUrl) {
+  $('albumLink').href = cfg.albumUrl;
+  $('albumLink').hidden = false;
+  $('albumNote').hidden = true;
+ }
  $('blessingText').addEventListener('input',()=>{$('charCount').textContent=$('blessingText').value.length+' / 1200'});
  $('blessingForm').addEventListener('ak:submission-saved',()=>{
   $('blessingForm').hidden=true;$('sentKeepsake').hidden=false;$('sentKeepsake').tabIndex=-1;$('sentKeepsake').focus({preventScroll:true});$('charCount').textContent='0 / 1200';
  });
- $('writeAgain').addEventListener('click',()=>{$('sentKeepsake').hidden=true;$('blessingForm').hidden=false;$('blessingStatus').textContent='';$('blessingName').focus()});
+ $('writeAgain').addEventListener('click',()=>{$('sentKeepsake').hidden=true;$('blessingForm').hidden=false;$('blessingName').focus()});
  go(0);applyMotion();
 })();

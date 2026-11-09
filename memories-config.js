@@ -1,8 +1,7 @@
 // Replace image: null with a relative path or an HTTPS photo URL.
 // Give every real photo meaningful alt text. No redesign is required.
 window.AK_MEMORIES = {
- albumUrl: 'https://example.com/wedding-photos',
- albumIsPlaceholder: true,
+ albumUrl: null,
  interval: 5500,
  chapters: [
   { name: 'Mehendi', date: '04 DECEMBER', title: 'The colour of beginnings', note: 'Love, in every little detail.', theme: 'mehendi', image: null, alt: 'Illustrated botanical courtyard with a lotus and flowering vines' },

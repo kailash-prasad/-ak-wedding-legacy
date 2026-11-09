@@ -243,3 +243,76 @@
       0 0 0 13px #d8aa6780, 0 20px 50px #18070da0;
   }
 }
+
+/* Let the doors open onto the actual portrait, with no intermediate scene. */
+.entrance { background: transparent; }
+.gate-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 43%, #762b42, #441425 47%, #220a15 86%);
+  transition: opacity 1.35s .55s var(--ease);
+}
+.entrance.opening .gate-backdrop { opacity: 0; }
+.entrance.opening .gate-light { opacity: .28; }
+.entrance.opening .skip-intro { color: var(--ivory); background: var(--wine-deep); padding-inline: 12px; }
+
+.hero {
+  height: auto;
+  min-height: calc(100svh - 76px);
+  max-height: none;
+  display: grid;
+  place-items: center;
+  padding: clamp(48px, 7vw, 98px) clamp(25px, 8vw, 115px);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 6vw, 88px);
+  width: min(100%, 1160px);
+}
+.hero-portrait {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 48% 48% 2px 2px / 26% 26% 2px 2px;
+  border: 2px solid var(--foil);
+  outline: 1px solid var(--gold);
+  outline-offset: 7px;
+  background: var(--wine-deep);
+  box-shadow: 0 20px 65px #49172c33;
+}
+.hero-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.hero-copy { padding: 0; }
+.hero h1 { font-size: clamp(50px, 6.15vw, 94px); margin-top: 16px; }
+.hero-details { color: #765447; font-size: 12px; }
+.keepsake-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 24px; }
+.keepsake-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--gold);
+  color: var(--wine);
+  background: var(--paper);
+  font-weight: 600;
+}
+.keepsake-links a:first-child { color: var(--paper); background: var(--wine); border-color: var(--wine); }
+.keepsake-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.album-link p { font-size: 13px; }
+.album-link strong { color: var(--wine); }
+.memory-track { transition-duration: .65s; }
+body:has(.letter-section :focus, .writing-desk :focus) .petals i { animation-play-state: paused; }
+
+@media (max-width: 760px) {
+  .hero { min-height: calc(100svh - 64px); padding: 37px 27px 45px; }
+  .hero-content { grid-template-columns: minmax(0, 1fr); max-width: 450px; gap: 27px; }
+  .hero-portrait { width: min(100%, 310px); aspect-ratio: 5 / 6; justify-self: center; }
+  .hero h1 { font-size: clamp(44px, 10vw, 66px); margin-top: 9px; }
+  .hero .couple { margin: 12px 0 5px; }
+  .keepsake-links { margin-top: 16px; }
+  .keepsake-links a { font-size: 11px; padding-inline: 10px; }
+}
