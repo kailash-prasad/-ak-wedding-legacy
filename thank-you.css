@@ -430,3 +430,31 @@ body:has(.letter-section :focus, .writing-desk :focus) .petals i { animation-pla
   .keepsake-links small, .index-arrow { display: none; }
   .index-no { font-size: 13px; }
 }
+
+/* The gift and letter share the same stationery. */
+.hero-thanks {
+  margin-top: 15px;
+  color: #f7e1c6;
+  font: italic clamp(19px, 2.05vw, 25px)/1.35 var(--serif);
+}
+.hero .couple { margin-top: 14px; }
+.gift-note {
+  position: relative;
+  margin: 28px 0;
+  padding: 21px 23px;
+  border: 1px solid #ae7a507a;
+  border-inline-start: 3px solid var(--gold);
+  background: #f5e5d5;
+}
+.gift-note h4 {
+  margin: 0 0 9px;
+  color: var(--wine);
+  font: 600 26px/1.15 var(--serif);
+}
+.letter-paper .gift-note p { margin: 0; }
+@media (max-width: 760px) {
+  .hero-thanks { margin-top: 9px; }
+  .hero .couple { margin-top: 6px; }
+  .gift-note { padding: 16px; }
+  .gift-note h4 { font-size: 23px; }
+}

@@ -39,9 +39,17 @@
  for(let i=0;i<14;i++){const petal=document.createElement('i');petal.style.cssText='--x:'+((i*37)%100)+'%;--duration:'+(15+i%7)+'s;--delay:'+(-i*2.8)+'s';$('petals').append(petal)}
  const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
- $('openLetter').addEventListener('click',()=>{
-  $('envelope').classList.add('open');$('openLetter').setAttribute('aria-expanded','true');
-  $('letterPaper').tabIndex=-1;$('letterPaper').focus({preventScroll:true});
+ function openThankYouLetter() {
+  $('envelope').classList.add('open');
+  $('openLetter').setAttribute('aria-expanded','true');
+  $('letterPaper').tabIndex = -1;
+  $('letterPaper').focus({preventScroll:true});
+ }
+ $('openLetter').addEventListener('click',openThankYouLetter);
+ document.querySelectorAll('[data-open-letter]').forEach(link => {
+  link.addEventListener('click', event => {
+   if (!event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) openThankYouLetter();
+  });
  });
  const cfg=window.AK_MEMORIES, chapters=cfg.chapters;
  let current=0;
