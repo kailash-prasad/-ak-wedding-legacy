@@ -5,9 +5,7 @@
  let motionPaused = reduced.matches, galleryPaused = false, galleryVisible = false, introTimer, timer;
  const gate = $('royalGate'), main = $('main'), header = document.querySelector('.site-header');
  const setInert = value => { main.inert = value; header.inert = value; };
- const introKey = 'ak-legacy-portrait-intro-seen';
  function finishIntro() {
-  try { localStorage.setItem(introKey, '1'); } catch { /* Storage is optional. */ }
   clearTimeout(introTimer); gate.hidden = true; gate.classList.remove('opening','leaving');
   document.body.classList.remove('intro-locked'); setInert(false); main.focus({preventScroll:true});
  }
@@ -33,9 +31,8 @@
   }
  });
  document.querySelector('.skip-link').addEventListener('click',()=>{if(!gate.hidden)finishIntro()});
- let returningGuest = false;
- try { returningGuest = localStorage.getItem(introKey) === '1'; } catch { /* Storage is optional. */ }
- if (!returningGuest && !location.hash) showIntro();
+ // Show the doors on the main link and let section links open directly.
+ if (!location.hash) showIntro();
  for(let i=0;i<14;i++){const petal=document.createElement('i');petal.style.cssText='--x:'+((i*37)%100)+'%;--duration:'+(15+i%7)+'s;--delay:'+(-i*2.8)+'s';$('petals').append(petal)}
  const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
