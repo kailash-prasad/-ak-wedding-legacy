@@ -3,12 +3,39 @@
  const cfg=window.AK_CONFIG||{};
  const entries=[{id:'blessingForm',type:'blessing',status:'blessingStatus',name:'blessingName',message:'blessingText',kind:'blessingType'},{id:'capsuleForm',type:'capsule',status:'capsuleStatus',name:'capsuleName',message:'capsuleText',kind:'capsuleType'}];
  const forms=entries.map(entry=>({...entry,form:document.getElementById(entry.id)})).filter(entry=>entry.form);
- const setUnavailable=text=>forms.forEach(entry=>{entry.form.querySelector('[type=submit]').disabled=true;document.getElementById(entry.status).textContent=text});
+ const retry = document.getElementById('retryVerification');
+ const setUnavailable = (text, canRetry = false) => {
+  for (const entry of forms) {
+   entry.form.querySelector('[type=submit]').disabled = true;
+   document.getElementById(entry.status).textContent = text;
+  }
+  if (retry) retry.hidden = !canRetry;
+ };
  // Install this guard immediately: a failed verification script must never submit a native GET.
  forms.forEach(entry=>entry.form.addEventListener('submit',e=>e.preventDefault()));
  if(!cfg.submitEndpoint||!cfg.turnstileSiteKey){setUnavailable('Guestbook is not yet available. Your message has not been saved.');return}
- let mounted=false;
- const watchdog=setTimeout(()=>{if(!mounted)setUnavailable('Verification is taking longer than expected. Please reload to try again; your message has not been saved.')},20000);
+ let mounted = false, script, watchdog, retryWidget;
+ retry?.addEventListener('click', () => {
+  if (mounted) retryWidget?.();
+  else loadVerification();
+ });
+ function loadVerification() {
+  setUnavailable('Preparing secure verification…');
+  script?.remove();
+  script = document.createElement('script');
+  const attempt = script;
+  function unavailable() {
+   if (script !== attempt || mounted) return;
+   clearTimeout(watchdog);
+   setUnavailable('Verification could not load. Your message is still here. Try again below.', true);
+  }
+  watchdog = setTimeout(unavailable, 20000);
+  script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+  script.async = true;
+  script.onload = () => { if (script === attempt) mount(); };
+  script.onerror = unavailable;
+  document.head.append(script);
+ }
  function mount(){
   if(mounted)return;mounted=true;clearTimeout(watchdog);
   for(const entry of forms){
@@ -16,12 +43,41 @@
    const holder=document.createElement('div');holder.className='turnstile-holder';holder.setAttribute('aria-label','Spam protection verification');
    const slot=document.getElementById('verificationSlot');if(slot)slot.append(holder);else submit.before(holder);
    let widget;
-   status.textContent='Complete verification below to send your note.';
-   try{widget=window.turnstile.render(holder,{sitekey:cfg.turnstileSiteKey,size:form.clientWidth<300?'compact':'flexible',theme:'light',
-    callback:()=>{submit.disabled=false;status.textContent=''},
-    'expired-callback':()=>{submit.disabled=true;status.textContent='Verification expired. Please verify again.'},
-    'error-callback':()=>{submit.disabled=true;status.textContent='Verification could not load. Please reload to try again. Your message has not been saved.'}
-   })}catch{status.textContent='Verification unavailable. Please try later.';continue}
+   const retryButton = entry.type === 'blessing' ? retry : null;
+   function requestVerification() {
+    submit.disabled = true;
+    status.textContent = 'Complete the verification below to send your note.';
+    if (retryButton) retryButton.hidden = true;
+    try {
+     if (widget !== undefined) {
+      window.turnstile.reset(widget);
+      return;
+     }
+     widget = window.turnstile.render(holder, {
+      sitekey: cfg.turnstileSiteKey, size: form.clientWidth < 300 ? 'compact' : 'flexible', theme: 'light',
+      callback: () => {
+       submit.disabled = false;
+       if (retryButton) retryButton.hidden = true;
+       if (status.textContent.startsWith('Complete the verification')) status.textContent = '';
+      },
+      'expired-callback': () => {
+       submit.disabled = true;
+       status.textContent = 'Verification expired. Please verify again.';
+       if (retryButton) retryButton.hidden = false;
+      },
+      'error-callback': () => {
+       submit.disabled = true;
+       status.textContent = 'Verification failed. Your message is still here.';
+       if (retryButton) retryButton.hidden = false;
+      }
+     });
+    } catch {
+     status.textContent = 'Verification unavailable. Your message has not been saved.';
+     if (retryButton) retryButton.hidden = false;
+    }
+   }
+   if (retryButton) retryWidget = requestVerification;
+   requestVerification();
    form.addEventListener('submit',async()=>{
     if(submit.disabled)return;
     const captchaToken=window.turnstile.getResponse(widget);
@@ -43,5 +99,5 @@
    });
   }
  }
- const script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';script.async=true;script.defer=true;script.onload=mount;script.onerror=()=>{clearTimeout(watchdog);setUnavailable('Verification unavailable. Please reload to try again. Your message has not been saved.')};document.head.append(script);
+ loadVerification();
 })();

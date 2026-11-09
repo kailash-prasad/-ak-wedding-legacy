@@ -12,7 +12,7 @@
 <body>
 <a class="skip-link" href="#main">Skip to our keepsake</a>
 <div class="entrance" id="royalGate" role="dialog" aria-modal="true" aria-label="An heirloom of love and gratitude" hidden>
-  <div class="gate-court" aria-hidden="true"></div><div class="gate-light" aria-hidden="true"></div>
+  <div class="gate-backdrop" aria-hidden="true"></div><div class="gate-light" aria-hidden="true"></div>
   <div class="entrance-heading"><span class="eyebrow">A WEDDING HEIRLOOM</span><p>An Heirloom of <em>Love & Gratitude</em></p></div>
   <div class="palace-portal">
     <div class="portal-crown" aria-hidden="true"><svg viewBox="0 0 400 100"><path d="M10 92Q15 61 67 65Q63 22 117 39Q124 8 163 22Q180 6 200 1Q220 6 237 22Q276 8 283 39Q337 22 333 65Q385 61 390 92" fill="none" stroke="currentColor"/><path d="M25 92Q33 72 80 76Q77 36 127 51Q136 22 166 35L200 17L234 35Q264 22 273 51Q323 36 320 76Q367 72 375 92" fill="none" stroke="currentColor"/></svg></div>
@@ -26,10 +26,23 @@
 <header class="site-header"><a href="#main" class="wordmark" aria-label="Aditya and Kailash home">A <i>&</i> K</a><span>AN HEIRLOOM OF LOVE</span><button class="quiet" id="motionToggle" aria-pressed="false">Pause motion</button></header>
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="heroTitle">
- <div class="hero-border" aria-hidden="true"></div><div class="hero-botanical left" aria-hidden="true"></div><div class="hero-botanical right" aria-hidden="true"></div>
- <div class="hero-copy"><p class="eyebrow">A LITTLE PIECE OF OUR FOREVER</p><div class="fine-ornament" aria-hidden="true">◇</div><h1 id="heroTitle">From Our Hearts,<br><em>To Yours.</em></h1><p class="hero-caption">Some moments become memories.<br>Some people make them unforgettable.</p><p class="couple">Aditya <span>&</span> Kailash</p><a class="text-link" href="#letter">A letter, just for you <span>↓</span></a></div>
- <div class="courtyard" aria-hidden="true"><img src="assets/courtyard.svg" alt="" width="1200" height="800"><div class="sunbeam"></div></div>
- <div class="hero-bottom"><span>4–5 DECEMBER 2026</span><span>VEDIC VILLAGE · KOLKATA</span></div>
+ <div class="hero-border" aria-hidden="true"></div>
+ <div class="hero-content">
+  <figure class="hero-portrait">
+   <img src="https://kailashprasad.com/wedding-invitation/assets/gallery/traditional-portrait.webp" alt="Aditya and Kailash together in traditional attire" fetchpriority="high">
+  </figure>
+  <div class="hero-copy">
+   <p class="eyebrow">A WEDDING HEIRLOOM</p>
+   <h1 id="heroTitle">From Our Hearts,<br><em>To Yours.</em></h1>
+   <p class="couple">Aditya <span>&amp;</span> Kailash</p>
+   <p class="hero-details">4–5 December 2026 · Vedic Village, Kolkata</p>
+   <nav class="keepsake-links" aria-label="Explore our keepsake">
+    <a href="#letter">Read our letter</a>
+    <a href="#photos">Wedding photos</a>
+    <a href="#message">Leave us a note</a>
+   </nav>
+  </div>
+ </div>
 </section>
 <section class="letter-section" id="letter" aria-labelledby="letterTitle">
  <div class="section-label reveal"><span class="chapter-num">I</span><p class="eyebrow">THE PEOPLE WHO MADE IT MAGICAL</p><h2 id="letterTitle">Thank you for being<br>part of <em>our forever.</em></h2></div>
@@ -40,9 +53,9 @@
   <article class="letter-paper" id="letterPaper">
    <div class="paper-top"><span>A & K</span><span>WITH LOVE, ALWAYS</span></div>
    <h3>To our dearest<br><em>family & friends,</em></h3>
-   <p>Thank you for being part of our celebrations. For every smile, every embrace, every dance, and every blessing.</p>
-   <p>What made our wedding truly special was the wonderful people who shared it with us.</p>
-   <p>As we begin our journey together, we carry your love, laughter, and blessings in our hearts. These memories will stay with us forever.</p>
+   <p>Whether you’re travelling to Kolkata or sending us your blessings from afar, thank you for being part of these days with us.</p>
+   <p>We can’t wait to see everyone together at Vedic Village, from the first colours of Mehendi to the last song at Sangeet.</p>
+   <p>We made this little corner for the photos, messages and moments we’ll want to come back to once the celebrations are over.</p>
    <p class="letter-closing">With endless love and gratitude,</p><div class="signature">Aditya & Kailash</div>
    <svg class="signature-line" viewBox="0 0 260 25" aria-hidden="true"><path d="M5 17Q90 0 200 15T252 8M180 22Q226 14 255 19"/></svg>
    <p class="letter-date">4–5 DECEMBER 2026 · KOLKATA</p>
@@ -58,18 +71,21 @@
   <div class="chapter-tabs" id="memoryDots" aria-label="Choose a wedding chapter"></div>
   <p class="sr-only" id="galleryStatus" aria-live="polite"></p>
  </div>
- <div class="album-link reveal"><a class="text-link" id="albumLink" href="https://example.com/wedding-photos" target="_blank" rel="noopener">Explore Our Wedding Album <span>↗</span></a><p>Illustrated previews for now. Our photographs will follow.<br><span id="albumNote">Album link is a temporary placeholder.</span></p></div>
+ <div class="album-link reveal">
+  <a class="text-link" id="albumLink" target="_blank" rel="noopener" hidden>Explore our wedding album <span aria-hidden="true">↗</span></a>
+  <p id="albumNote"><strong>Wedding photos coming soon</strong><br>We’ll share them here after the celebrations.</p>
+ </div>
 </section>
 <section class="guestbook" id="message" aria-labelledby="messageTitle">
  <div class="guestbook-intro reveal"><span class="chapter-num">III</span><p class="eyebrow">A KEEPSAKE IN YOUR WORDS</p><h2 id="messageTitle">Leave us<br>a little <em>love.</em></h2><p>A wish. A memory. A little blessing.<br>Something of you, to keep with us.</p><div class="ink-flower" aria-hidden="true"></div><span class="guestbook-footnote">Written with love. Treasured forever.</span></div>
  <div class="writing-desk reveal"><div class="desk-heading"><span>THE GUESTBOOK</span><span>01 / A NOTE FROM YOU</span></div>
-  <form id="blessingForm"><label for="blessingName">Your name</label><input id="blessingName" name="name" autocomplete="name" maxlength="80" required placeholder="With love, from…"><label for="blessingText">Your message</label><textarea id="blessingText" name="message" maxlength="1200" required rows="5" placeholder="Dear Aditya & Kailash…"></textarea><div class="message-meta"><span>Messages are reviewed before sharing.</span><span id="charCount">0 / 1200</span></div><input id="blessingType" type="hidden" value="blessing"><div id="verificationSlot"></div><button class="send-button" type="submit" disabled><span>Seal & send with love</span><span aria-hidden="true">↗</span></button><p id="blessingStatus" role="status" aria-live="polite">Preparing secure verification…</p></form>
+  <form id="blessingForm"><label for="blessingName">Your name</label><input id="blessingName" name="name" autocomplete="name" maxlength="80" required placeholder="With love, from…"><label for="blessingText">Your message</label><textarea id="blessingText" name="message" maxlength="1200" required rows="5" placeholder="Dear Aditya & Kailash…"></textarea><div class="message-meta"><span>Messages are reviewed before sharing.</span><span id="charCount">0 / 1200</span></div><input id="blessingType" type="hidden" value="blessing"><p id="blessingStatus" role="status" aria-live="polite">Preparing secure verification…</p><div id="verificationSlot"></div><button class="quiet" type="button" id="retryVerification" hidden>Retry verification</button><button class="send-button" type="submit" disabled><span>Seal & send with love</span><span aria-hidden="true">↗</span></button></form>
   <div class="sent-keepsake" id="sentKeepsake" hidden><div class="flying-letter" aria-hidden="true"><span>A&K</span></div><h3>A little love,<br><em>kept forever.</em></h3><p>Your message has been saved<br>and is awaiting approval. Thank you.</p><button class="text-link" id="writeAgain">Write another note ↗</button></div>
  </div>
 </section>
 <footer class="farewell" id="farewell">
  <div class="night-court" aria-hidden="true"></div><div class="lanterns" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
- <div class="farewell-copy reveal"><p class="eyebrow">UNTIL WE MAKE MORE MEMORIES</p><div class="farewell-monogram">A <i>&</i> K</div><h2>Our celebration was beautiful<br>because <em>you were part of it.</em></h2><p>The wedding was a moment.<br>Your love is a memory we will carry forever.</p><div class="signature">With love, Aditya & Kailash</div><button class="quiet" id="replayIntro">Open our forever, again ↗</button></div>
+ <div class="farewell-copy reveal"><p class="eyebrow">UNTIL WE MAKE MORE MEMORIES</p><div class="farewell-monogram">A <i>&</i> K</div><h2>See you in <em>Kolkata.</em></h2><p>Until then, leave us a note to read together.</p><div class="signature">With love, Aditya & Kailash</div><button class="quiet" id="replayIntro">Open our forever, again ↗</button></div>
  <div class="footer-line"><span>4–5 DECEMBER 2026 · KOLKATA</span><span>A MEMORY TO KEEP, ALWAYS.</span></div>
 </footer>
 </main>
