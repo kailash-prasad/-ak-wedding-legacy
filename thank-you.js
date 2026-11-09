@@ -6,17 +6,17 @@
  const gate = $('royalGate'), main = $('main'), header = document.querySelector('.site-header');
  const setInert = value => { main.inert = value; header.inert = value; };
  function finishIntro() {
-  clearTimeout(introTimer); gate.hidden = true; gate.classList.remove('opening','leaving');
+  clearTimeout(introTimer); gate.hidden = true; gate.classList.remove('opening');
   document.body.classList.remove('intro-locked'); setInert(false); main.focus({preventScroll:true});
  }
  function enter(skip = false) {
   if (gate.classList.contains('opening') && !skip) return;
   if (skip || motionPaused) return finishIntro();
   gate.classList.add('opening'); $('openRoyalGate').disabled = true; $('skipIntro').focus();
-  introTimer = setTimeout(() => { gate.classList.add('leaving'); introTimer = setTimeout(finishIntro,700); },2800);
+  introTimer = setTimeout(finishIntro, 1350);
  }
  function showIntro() {
-  gate.hidden = false; gate.classList.remove('opening','leaving'); $('openRoyalGate').disabled = false;
+  gate.hidden = false; gate.classList.remove('opening'); $('openRoyalGate').disabled = false;
   document.body.classList.add('intro-locked'); setInert(true); $('openRoyalGate').focus({preventScroll:true});
  }
  $('openRoyalGate').addEventListener('click',()=>enter());
