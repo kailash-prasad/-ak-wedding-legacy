@@ -14,3 +14,232 @@
 .envelope-flap{transition:transform 1.1s var(--ease),opacity .5s .6s}.envelope.open .envelope-flap{opacity:0;pointer-events:none}
 .motion-paused *,.motion-paused *:before,.motion-paused *:after{animation:none!important;transition:none!important}.motion-paused .signature-line{stroke-dashoffset:0}.motion-paused .petals,.motion-paused .lanterns{display:none}
 .writing-desk,.guestbook-intro{min-width:0}.turnstile-holder{width:100%}
+
+/* Royal palette. Gold foil is decorative; use dark bronze for text on paper. */
+:root {
+  --wine: #681b36;
+  --wine-deep: #2b0b19;
+  --jade: #164438;
+  --jade-deep: #092b24;
+  --midnight: #121e2b;
+  --gold: #8b5d2f;
+  --foil: #d8aa67;
+  --champagne: #f2d6a0;
+  --ivory: #fff9ef;
+  --paper: #fffdf7;
+  --rose-paper: #f8eae5;
+  --ink: #321b24;
+}
+
+.entrance {
+  color: var(--ivory);
+  background: radial-gradient(ellipse at 50% 43%, #762b42 0%, #441425 47%, #220a15 86%);
+}
+
+.entrance::before {
+  inset: clamp(10px, 2vw, 24px);
+  border-color: #d8aa677a;
+  outline: 1px solid #d8aa672b;
+  outline-offset: -6px;
+}
+
+.entrance::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background: repeating-linear-gradient(45deg, transparent 0 23px, #f2d6a008 23px 24px),
+    repeating-linear-gradient(-45deg, transparent 0 23px, #f2d6a008 23px 24px);
+  mask-image: radial-gradient(ellipse, transparent 37%, #000 90%);
+}
+
+.entrance-heading p,
+.entrance-footer p,
+.entrance .quiet {
+  color: var(--ivory);
+}
+
+.entrance-heading .eyebrow,
+.entrance-footer > span,
+.portal-crown {
+  color: var(--champagne);
+}
+
+.palace-portal {
+  box-shadow: 0 0 0 3px #f2d6a0, 0 0 0 9px #916034,
+    0 0 0 10px #e6ba78, 0 0 0 17px #36101d,
+    0 0 0 18px #d8aa6780, 0 24px 62px #18070dc4;
+}
+
+.entry-seal,
+.small-seal {
+  color: var(--champagne);
+  background: radial-gradient(circle at 35% 24%, #9e3f5a, var(--wine) 54%, var(--wine-deep));
+  border-color: var(--foil);
+}
+
+.entry-seal {
+  box-shadow: 0 0 0 4px #3b1020, 0 0 0 5px #f2d6a080, 0 8px 25px #210910b0;
+}
+
+.entrance.opening .gate-court {
+  opacity: 1;
+}
+
+.site-header {
+  background: var(--paper);
+  border-bottom-color: #a97c4a45;
+  color: var(--wine);
+}
+
+.hero {
+  background: radial-gradient(ellipse at 50% 17%, var(--paper) 5%, var(--ivory) 47%, #f2e0cb 100%);
+}
+
+.hero-border {
+  border-color: #a8753d85;
+  box-shadow: inset 0 0 0 4px #fff9ef65;
+}
+
+.hero .eyebrow,
+.section-label .eyebrow,
+.memories-heading .eyebrow {
+  color: var(--gold);
+}
+
+.letter-section {
+  background: radial-gradient(ellipse at 50% 40%, #fdf5ef, var(--rose-paper) 80%);
+}
+
+.section-label em,
+.memories-heading em {
+  color: var(--wine);
+}
+
+.envelope-back {
+  background: var(--wine-deep);
+  border-color: var(--foil);
+  box-shadow: 0 25px 60px #681b3633;
+}
+
+.envelope-front {
+  background: linear-gradient(135deg, #a84660, var(--wine) 55%, #4a142a);
+}
+
+.envelope-flap {
+  background: linear-gradient(150deg, #bd6979, #8e2e4a);
+}
+
+.letter-open {
+  color: var(--ivory);
+}
+
+.letter-paper,
+.writing-desk {
+  background-color: var(--paper);
+  border-color: #bb925b;
+}
+
+.moving-ribbon {
+  background: var(--wine-deep);
+  border-color: var(--foil);
+  color: var(--champagne);
+}
+
+.memories {
+  background: linear-gradient(var(--ivory), var(--paper) 75%);
+}
+
+.gallery-window {
+  border-color: var(--gold);
+  box-shadow: 0 14px 45px #42222816;
+}
+
+.memory-slide {
+  background: radial-gradient(ellipse at 81% 35%, var(--scene-light), var(--scene-bg) 69%);
+}
+
+.memory-slide.mehendi {
+  --scene-bg: #13372b;
+  --scene-light: #35715a;
+  --scene-ink: #fff3d7;
+  --scene-gold: #e0c087;
+}
+
+.memory-slide.sangeet {
+  --scene-bg: #25162e;
+  --scene-light: #5d3c6a;
+  --scene-ink: #fff0df;
+  --scene-gold: #d9b7da;
+}
+
+.memory-slide.haldi {
+  --scene-bg: #77411a;
+  --scene-light: #b96d23;
+  --scene-ink: #fff7dc;
+  --scene-gold: #ffdc8b;
+}
+
+.memory-slide.wedding {
+  --scene-bg: #491327;
+  --scene-light: #913c54;
+  --scene-ink: #fff3da;
+  --scene-gold: #f4ca93;
+}
+
+.chapter-tabs button {
+  color: #68524a;
+}
+
+.chapter-tabs button[aria-current='true'] {
+  background: linear-gradient(#f8eae5, transparent 95%);
+  font-weight: 600;
+}
+
+.guestbook {
+  background: radial-gradient(ellipse at 18% 35%, var(--jade), var(--jade-deep) 72%);
+  border-top-color: var(--foil);
+}
+
+.guestbook-intro {
+  color: var(--ivory);
+}
+
+.guestbook-intro :is(em, .chapter-num, .eyebrow, .guestbook-footnote) {
+  color: var(--champagne);
+}
+
+.writing-desk {
+  box-shadow: 12px 15px 0 #d8aa6740, 0 20px 55px #07191468;
+}
+
+.send-button {
+  background: linear-gradient(130deg, var(--wine), #51142a);
+}
+
+.farewell {
+  background: radial-gradient(ellipse at 50% 70%, #284055, var(--midnight) 75%);
+  color: var(--ivory);
+}
+
+.night-court {
+  background: linear-gradient(var(--midnight) 5%, #121e2b45), url('assets/courtyard.svg') center bottom / cover;
+  opacity: .3;
+}
+
+.farewell-monogram,
+.farewell .signature {
+  color: var(--champagne);
+}
+
+:is(.entrance, .farewell) :focus-visible {
+  outline-color: var(--champagne);
+}
+
+@media (max-width: 760px) {
+  .palace-portal {
+    box-shadow: 0 0 0 2px #f2d6a0, 0 0 0 6px #916034,
+      0 0 0 7px #e6ba78, 0 0 0 12px #36101d,
+      0 0 0 13px #d8aa6780, 0 20px 50px #18070da0;
+  }
+}
